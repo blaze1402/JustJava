@@ -1,8 +1,16 @@
 package com.blaze.justjava;
 
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+
+/**
+ * This app displays an order form to order coffee.
+ */
 
 public class MainActivity extends AppCompatActivity {
 
@@ -10,5 +18,29 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+    /**
+     * This method is called when the order button is clicked.
+     */
+    public void submitOrder(View view) {
+        display(2);
+        displayPrice(2 * 5);
+    }
+
+    /**
+     * This method displays the given quantity value on the screen.
+     */
+    private void display(int number) {
+        TextView quantityTextView = findViewById(R.id.quantity_tv);
+        quantityTextView.setText("" + number);
+    }
+
+    /**
+     * This method displays the given price on the screen.
+     */
+    private void displayPrice(int number) {
+        TextView priceTextView = findViewById(R.id.price_tv);
+        priceTextView.setText("₹" + number);
     }
 }
