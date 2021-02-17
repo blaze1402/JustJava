@@ -56,12 +56,12 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
-        android:text="Price"
+        android:text="Order Summary"
         android:textAllCaps="true"
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/price_tv"
+        android:id="@+id/order_summary_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
