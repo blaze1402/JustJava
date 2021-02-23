@@ -3,6 +3,7 @@ package com.blaze.justjava;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
 
     int quantity = 0;
+    CheckBox whippedCreamCheckBox, chocolateCheckBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +28,9 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        int price = calculatePrice();
-        createOrderSummary(price);
+        whippedCreamCheckBox = findViewById(R.id.whipped_cream_cb);
+        chocolateCheckBox = findViewById(R.id.chocolate_cb);
+        createOrderSummary();
     }
 
     /**
@@ -40,8 +43,9 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This method displays the order summary on the screen.
      */
-    private void createOrderSummary(int price) {
-        displayMessage("Name: Sam \nQuantity: " + quantity + "\nTotal: ₹" + price + "\nThank you!");
+    private void createOrderSummary() {
+        displayMessage("Name: Sam \nAdd Whipped Cream? " + whippedCreamCheckBox.isChecked() + "\nAdd Chocolate? "
+                + chocolateCheckBox.isChecked() + "\nQuantity: " + quantity + "\nTotal: ₹" + calculatePrice() + "\nThank you!");
     }
 
     /**
