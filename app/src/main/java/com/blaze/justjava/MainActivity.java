@@ -4,7 +4,9 @@ package com.blaze.justjava;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,8 +17,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    int quantity = 0;
+    int quantity = 1;
     CheckBox whippedCreamCheckBox, chocolateCheckBox;
+    EditText name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     public void submitOrder(View view) {
         whippedCreamCheckBox = findViewById(R.id.whipped_cream_cb);
         chocolateCheckBox = findViewById(R.id.chocolate_cb);
+        name = findViewById(R.id.name_et);
         createOrderSummary();
     }
 
@@ -37,14 +41,21 @@ public class MainActivity extends AppCompatActivity {
      * This method Calculates the price of the order and @returns total price.
      */
     private int calculatePrice() {
-        return quantity * 5;
+        int basePrice = 5;
+        if (whippedCreamCheckBox.isChecked()) {
+            basePrice += 1;
+        }
+        if (chocolateCheckBox.isChecked()) {
+            basePrice += 2;
+        }
+        return quantity * basePrice;
     }
 
     /**
      * This method displays the order summary on the screen.
      */
     private void createOrderSummary() {
-        displayMessage("Name: Sam \nAdd Whipped Cream? " + whippedCreamCheckBox.isChecked() + "\nAdd Chocolate? "
+        displayMessage("Name: " + name.getText().toString() + "\nAdd Whipped Cream? " + whippedCreamCheckBox.isChecked() + "\nAdd Chocolate? "
                 + chocolateCheckBox.isChecked() + "\nQuantity: " + quantity + "\nTotal: ₹" + calculatePrice() + "\nThank you!");
     }
 
@@ -60,6 +71,10 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the plus button is clicked.
      */
     public void increment(View view) {
+        if (quantity == 100) {
+            Toast.makeText(this, "You cannot have more than 100 Coffees", Toast.LENGTH_LONG).show();
+            return;
+        }
         displayQuantity(++quantity);
     }
 
@@ -67,6 +82,10 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the minus button is clicked.
      */
     public void decrement(View view) {
+        if (quantity == 1) {
+            Toast.makeText(this, "You cannot have less than 1 Coffee", Toast.LENGTH_LONG).show();
+            return;
+        }
         displayQuantity(--quantity);
     }
 
