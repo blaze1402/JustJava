@@ -7,7 +7,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <EditText
@@ -17,44 +17,40 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginBottom="8dp"
-            android:hint="Name"
+            android:autofillHints=""
+            android:hint="@string/name"
             android:inputType="textCapWords" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:text="Toppings"
-            android:textAllCaps="true"
-            android:textSize="18sp" />
+            style="@style/HeaderTextStyle"
+            android:layout_marginStart="20dp"
+            android:text="@string/toppings" />
 
         <CheckBox
             android:id="@+id/whipped_cream_cb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:paddingLeft="10dp"
-            android:text="Whipped Cream"
+            android:layout_marginStart="20dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:text="@string/whipped_cream"
             android:textSize="16sp" />
 
         <CheckBox
             android:id="@+id/chocolate_cb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:paddingLeft="10dp"
-            android:text="Chocolate"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="-15dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:text="@string/chocolate"
             android:textSize="16sp" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginBottom="4dp"
-            android:text="Quantity"
-            android:textAllCaps="true"
-            android:textSize="18sp" />
+            style="@style/HeaderTextStyle"
+            android:layout_marginStart="20dp"
+            android:text="@string/quantity" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -64,9 +60,9 @@
             <Button
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
                 android:onClick="decrement"
-                android:text="-"
+                android:text="@string/decrement_sign"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -76,8 +72,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
-                android:text="1"
-                android:textColor="@color/black"
+                android:text="@string/_1"
                 android:textSize="20sp" />
 
 
@@ -85,37 +80,18 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:onClick="increment"
-                android:text="+"
+                android:text="@string/increment_sign"
                 android:textSize="20sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
-            android:text="Order Summary"
-            android:textAllCaps="true"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/order_summary_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:text="₹0"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
-
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
             android:onClick="submitOrder"
-            android:text="Order"
+            android:text="@string/order"
             android:textSize="25sp" />
 
     </LinearLayout>

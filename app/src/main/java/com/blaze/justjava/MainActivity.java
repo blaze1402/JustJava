@@ -1,6 +1,8 @@
 package com.blaze.justjava;
 
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
@@ -19,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     int quantity = 1;
     CheckBox whippedCreamCheckBox, chocolateCheckBox;
-    EditText name;
+    String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +35,16 @@ public class MainActivity extends AppCompatActivity {
     public void submitOrder(View view) {
         whippedCreamCheckBox = findViewById(R.id.whipped_cream_cb);
         chocolateCheckBox = findViewById(R.id.chocolate_cb);
-        name = findViewById(R.id.name_et);
-        createOrderSummary();
+        EditText nameField = findViewById(R.id.name_et);
+        name = nameField.getText().toString(); // to store the name of the customer
+
+        Intent intent = new Intent(Intent.ACTION_SENDTO); // intent to send a email of the order summary
+        intent.setData(Uri.parse("mailto:"));
+        intent.putExtra(Intent.EXTRA_SUBJECT, "JustJava Order for " + name);
+        intent.putExtra(Intent.EXTRA_TEXT, createOrderSummary());
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
     }
 
     /**
@@ -54,8 +64,8 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This method displays the order summary on the screen.
      */
-    private void createOrderSummary() {
-        displayMessage("Name: " + name.getText().toString() + "\nAdd Whipped Cream? " + whippedCreamCheckBox.isChecked() + "\nAdd Chocolate? "
+    public String createOrderSummary() {
+        return ("Name: " + name + "\nAdd Whipped Cream? " + whippedCreamCheckBox.isChecked() + "\nAdd Chocolate? "
                 + chocolateCheckBox.isChecked() + "\nQuantity: " + quantity + "\nTotal: ₹" + calculatePrice() + "\nThank you!");
     }
 
@@ -87,13 +97,5 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         displayQuantity(--quantity);
-    }
-
-    /**
-     * This method displays the given text on the screen.
-     */
-    private void displayMessage(String message) {
-        TextView orderSummaryTextView = findViewById(R.id.order_summary_tv);
-        orderSummaryTextView.setText(message);
     }
 }
